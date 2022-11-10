@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## How to get React ready to use
+
+After cloning the project, get inside the directory and run `npm install` or `yarn install` (its up to you)
 ## Available Scripts
 
 In the project directory, you can run:
