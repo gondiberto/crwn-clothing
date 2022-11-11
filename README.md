@@ -72,3 +72,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### TIPS
+
+- remover ssl constraint `yarn config set "strict-ssl" false -g`
+
+## remove ssl for git `git config --global http.sslVerify false`
