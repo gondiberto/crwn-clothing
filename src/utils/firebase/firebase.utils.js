@@ -1,5 +1,10 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import { getAuth,
+     signInWithRedirect, 
+     signInWithPopup, 
+     GoogleAuthProvider,
+     createUserWithEmailAndPassword,
+     sendPasswordResetEmail} from 'firebase/auth'
 import { getFirestore,
          doc,
          getDoc,
@@ -30,10 +35,11 @@ provider.setCustomParameters({
 
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     const userDocRef = doc(db, 'users', userAuth.uid);
     
     console.log(userDocRef);
@@ -49,7 +55,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 
         try{
             await setDoc(userDocRef, {
-                displayName, email, createAt
+                displayName, email, createAt, ...additionalInformation
             })
         } catch (error) {
             console.log(error.message);    
@@ -57,9 +63,16 @@ export const createUserDocumentFromAuth = async (userAuth) => {
     }
 
     return userDocRef;
+    
     // if user data exists
 
 
     // return userDocsRef
 }
 
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    // its better to put all methods related to a service in a single place - better to change if needed
+    if (!email || !password) return;
+
+    return await createUserWithEmailAndPassword(auth, email, password);
+}

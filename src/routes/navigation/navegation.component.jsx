@@ -20,6 +20,7 @@ const Navigation = () => {
             </Link>
           </div>  
         </div>
+        {/* define the position that the children routes will be rendered */}
         <Outlet />
       </Fragment>
     )

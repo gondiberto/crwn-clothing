@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
-import Navigation from './routes/navegation/navegation.component';
+import Navigation from './routes/navigation/navegation.component';
 import Home from './routes/home/home.component'
 import SignIn from './routes/sign-in/sign-in.component';
 const Shop = () => {
