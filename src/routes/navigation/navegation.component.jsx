@@ -1,9 +1,13 @@
 import { Outlet, Link } from "react-router-dom";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
+import { UserContext } from "../../contexts/user.context";
+import { signOutUser } from "../../utils/firebase/firebase.utils";
+
 import "./navigation.styles.scss";
 
 const Navigation = () => {
+  const { currentUser } = useContext(UserContext);
   return (
     <Fragment>
       {/* frament allow us to not be obligate to put it inside a div */}
@@ -18,9 +22,15 @@ const Navigation = () => {
           <Link className="nav-link" to="/contact">
             CONTACT
           </Link>
-          <Link className="nav-link" to="/auth">
-            SIGN IN
-          </Link>
+          {currentUser ? (
+            <span className="nav-link" onClick={signOutUser}>
+              SIGN OUT
+            </span>
+          ) : (
+            <Link className="nav-link" to="/auth">
+              SIGN IN
+            </Link>
+          )}
         </div>
       </div>
       {/* define the position that the children routes will be rendered */}
