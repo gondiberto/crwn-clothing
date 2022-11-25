@@ -4,10 +4,7 @@ import Home from "./routes/home/home.component";
 import Authentication from "./routes/authentication/authentication";
 import { Link } from "react-router-dom";
 import { Outlet } from "react-router-dom";
-
-const Shop = () => {
-  return <h1>I am the Shop Page</h1>;
-};
+import Shop from "./routes/shop/shop.component";
 
 const Contact = () => {
   return (

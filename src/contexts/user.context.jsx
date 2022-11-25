@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import {
   onAuthStateChangeListener,
-  signOutUser,
   createUserDocumentFromAuth,
 } from "../utils/firebase/firebase.utils";
 
