@@ -5,7 +5,7 @@ import { CartContext } from "../../contexts/cart.context";
 
 // shortcut for creating functional component -> rsc + tab
 const CartIcon = () => {
-  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen, cartCount } = useContext(CartContext);
 
   const toogleIsCartOpen = () => {
     setIsCartOpen(!isCartOpen);
@@ -13,7 +13,7 @@ const CartIcon = () => {
   return (
     <div className="cart-icon-container" onClick={toogleIsCartOpen}>
       <ShoppingIcon className="shopping-icon" />
-      <span className="item-count"></span>
+      <span className="item-count">{cartCount}</span>
     </div>
   );
 };

@@ -1,13 +1,57 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+
+const addCartItem = (cartItems, productToAdd) => {
+  // check if the product is already at the cart
+  const existingCartItem = cartItems.find(
+    (cartItem) => cartItem.id === productToAdd.id
+  );
+
+  // if exists, increment the quantity
+  if (existingCartItem) {
+    return cartItems.map((cartItem) =>
+      cartItem.id === productToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    );
+  }
+
+  // return a new array with the cartItems + the added product with an addicional field
+  return [...cartItems, { ...productToAdd, quantity: 1 }];
+};
 
 export const CartContext = createContext({
   isCartOpen: false,
   setIsCartOpen: () => {},
+  cartItems: [],
+  addItemToCart: () => {},
+  cartCount: 0,
 });
 
 export const CartProvider = ({ children }) => {
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const value = { isCartOpen, setIsCartOpen };
+  const [cartItems, setCartItems] = useState([]);
+  const [cartCount, setCartCount] = useState(0);
+
+  useEffect(() => {
+    const newCartCount = cartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity,
+      0
+    );
+    setCartCount(newCartCount);
+  }, [cartItems]);
+
+  const addItemToCart = (productToAdd) => {
+    setCartItems(addCartItem(cartItems, productToAdd));
+  };
+
+  // here we expose what we want to consume
+  const value = {
+    isCartOpen,
+    setIsCartOpen,
+    addItemToCart,
+    cartItems,
+    cartCount,
+  };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
