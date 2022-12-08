@@ -1,11 +1,13 @@
-# Getting Started with Create React App
+# Capstone project built at the Zero to Mastery course
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Created by Gondiberto during the course [Complete React Developer Zero to Mastery](https://www.udemy.com/course/complete-react-developer-zero-to-mastery/l).
 
 ## How to get React ready to use
 
 After cloning the project, get inside the directory and run `npm install` or `yarn install` (its up to you)
+
 ## Available Scripts
 
 In the project directory, you can run:
