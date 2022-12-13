@@ -53,17 +53,24 @@ export const CartProvider = ({ children }) => {
   const [cartCount, setCartCount] = useState(0);
   const [cartPrice, setCartPrice] = useState(0);
 
+  // Good pratice: dont use the same hook for different porpouses
+  // hook to monitor cartItems and update the cart quantity
   useEffect(() => {
     const newCartCount = cartItems.reduce(
       (total, cartItem) => total + cartItem.quantity,
       0
     );
 
+    setCartCount(newCartCount);
+  }, [cartItems]);
+
+  // monitor the cartItems and update the total
+  useEffect(() => {
     const newCartPrice = cartItems.reduce(
       (total, cartItem) => total + cartItem.price * cartItem.quantity,
       0
     );
-    setCartCount(newCartCount);
+
     setCartPrice(newCartPrice);
   }, [cartItems]);
 

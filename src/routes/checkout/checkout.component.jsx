@@ -6,7 +6,7 @@ import "./checkout.styles.scss";
 const Checkout = () => {
   // get cart list from context
   const { cartItems, cartPrice } = useContext(CartContext);
-
+  console.log(cartItems);
   return (
     <div className="checkout-container">
       <div className="checkout-header">
@@ -30,7 +30,7 @@ const Checkout = () => {
         <CheckoutCart key={cartItem.id} cartItem={cartItem} />
       ))}
 
-      <span className="Total">Total: ${cartPrice}</span>
+      <span className="total">Total: ${cartPrice}</span>
     </div>
   );
 };

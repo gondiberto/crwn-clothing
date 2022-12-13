@@ -7,22 +7,29 @@ const CheckoutCart = ({ cartItem }) => {
   const { imageUrl, name, price, quantity } = cartItem;
   const { removeItemToCart, addItemToCart } = useContext(CartContext);
 
-  const handleDecrease = () => {
-    removeItemToCart(cartItem);
-  };
+  // good practise to remove the called functions from the JS tags
+  const handleDecrease = () => removeItemToCart(cartItem);
+  const handleClearItem = () => removeItemToCart(cartItem, true);
+  const handleIncrease = () => addItemToCart(cartItem);
+
   return (
     <div className="checkout-item-container">
       <img className="image-container" src={imageUrl} alt={`${name}`} />
       <span className="name">{name}</span>
-      <span onClick={handleDecrease}>decrease</span>
-      <span className="quantity">{quantity}</span>
-      <span onClick={() => addItemToCart(cartItem)}>increase</span>
-      <span className="price">{price}</span>
-      <div
-        onClick={() => removeItemToCart(cartItem, true)}
-        className="remove-button"
-      >
-        &#10005;
+      <span className="quantity">
+        <div onClick={handleDecrease} className="arrow">
+          &#11164;
+        </div>
+        <span className="value">{quantity}</span>
+        <div onClick={handleIncrease} className="arrow">
+          &#11166;
+        </div>
+      </span>
+      <span className="price">
+        ${price} (subtotal: {price * quantity})
+      </span>
+      <div onClick={handleClearItem} className="remove-button">
+        &#10006;
       </div>
     </div>
   );
