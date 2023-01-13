@@ -29,7 +29,7 @@ const CheckoutCart = ({ cartItem }) => {
         ${price} (subtotal: {price * quantity})
       </span>
       <div onClick={handleClearItem} className="remove-button">
-        &#10006;
+        &#128465;
       </div>
     </div>
   );

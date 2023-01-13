@@ -19,5 +19,20 @@
     .name {
       font-size: 16px;
     }
+
+    .remove {
+      font-size: 25px;
+      min-width: 10px;
+      cursor: pointer;
+      padding: 5px 10px 5px 10px;
+      background-color: black;
+      color: white;
+    }
+
+    .remove:hover {
+      background-color: white;
+      color: black;
+      border: 1px solid black;
+    }
   }
 }

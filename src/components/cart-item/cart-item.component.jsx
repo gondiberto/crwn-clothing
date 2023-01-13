@@ -15,7 +15,12 @@ const CartItem = ({ cartItem }) => {
         <span className="price">
           {quantity} x ${price}
         </span>
-        <span onClick={() => removeItemToCart(cartItem, true)}>X</span>
+        <span
+          className="remove"
+          onClick={() => removeItemToCart(cartItem, true)}
+        >
+          &#128465;
+        </span>
       </div>
     </div>
   );
