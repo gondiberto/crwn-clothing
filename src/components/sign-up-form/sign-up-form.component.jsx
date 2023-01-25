@@ -5,7 +5,7 @@ import {
 
 import FormInput from "../../components/form-input/form-input.component";
 import "./sign-up-form.styles.scss";
-import Button from "../button/button.component";
+import Button, { BUTTON_TYPE_CLASSES } from "../button/button.component";
 
 import { useState } from "react";
 

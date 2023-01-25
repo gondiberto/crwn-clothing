@@ -21,17 +21,16 @@
     }
 
     .remove {
-      font-size: 25px;
+      font-size: 20px;
       min-width: 10px;
       cursor: pointer;
       padding: 5px 10px 5px 10px;
-      background-color: black;
-      color: white;
+      color: black;
     }
 
     .remove:hover {
-      background-color: white;
-      color: black;
+      background-color: black;
+      color: white;
       border: 1px solid black;
     }
   }

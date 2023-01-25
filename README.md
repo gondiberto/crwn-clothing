@@ -80,3 +80,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - remover ssl constraint `yarn config set "strict-ssl" false -g`
 
 ## remove ssl for git `git config --global http.sslVerify false`
+
+### Aditional packages added
+
+# SASS
+
+# Style-Components
+
+`yarn add style-components`
