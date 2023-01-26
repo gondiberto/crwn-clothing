@@ -25,9 +25,7 @@ const CheckoutCart = ({ cartItem }) => {
           &#11166;
         </div>
       </span>
-      <span className="price">
-        ${price} (subtotal: {price * quantity})
-      </span>
+      <span className="price">${price}</span>
       <div onClick={handleClearItem} className="remove-button">
         &#128465;
       </div>
