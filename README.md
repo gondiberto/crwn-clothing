@@ -88,3 +88,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Style-Components
 
 `yarn add style-components`
+
+### Netlify deploy
+
+Create a /public/\_redirects file to route any request to index.html. This is necessary because we're implementing a SPA.
