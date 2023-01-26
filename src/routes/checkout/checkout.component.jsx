@@ -6,7 +6,7 @@ import "./checkout.styles.scss";
 const Checkout = () => {
   // get cart list from context
   const { cartItems, cartPrice } = useContext(CartContext);
-  console.log(cartItems);
+
   return (
     <div className="checkout-container">
       <div className="checkout-header">
