@@ -1,4 +1,5 @@
-import { createContext, useEffect, useState } from "react";
+import { initializeFirestore } from "firebase/firestore";
+import { createContext, useEffect, useState, useReducer } from "react";
 
 const addCartItem = (cartItems, productToAdd) => {
   // check if the product is already at the cart
@@ -47,7 +48,31 @@ export const CartContext = createContext({
   cartPrice: 0,
 });
 
+const INITIAL_STATE = {
+  isCartOpen: true,
+  cartItems: [],
+  cartCount: 0,
+  cartPrice: 0,
+};
+
+const cartReducer = (state, action) => {
+  const { type, payload } = action;
+
+  console.log(payload);
+  switch (type) {
+    case "SET_CART_ITEMS":
+      return {
+        ...state,
+        payload,
+      };
+
+    default:
+      throw new Error(`unhandled type ${type} in CartReducer`);
+  }
+};
+
 export const CartProvider = ({ children }) => {
+  /*
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
@@ -73,19 +98,50 @@ export const CartProvider = ({ children }) => {
 
     setCartPrice(newCartPrice);
   }, [cartItems]);
+  */
+
+  const [{ cartItems, isCartOpen, cartCount, cartPrice }, dispatch] =
+    useReducer(cartReducer, INITIAL_STATE);
+
+  const updateCartItemsReducer = (newCartItems) => {
+    const newCartCount = newCartItems.reduce(
+      (total, cartItem) => total + cartItem.quantity,
+      0
+    );
+
+    const newCartPrice = newCartItems.reduce(
+      (total, cartItem) => total + cartItem.price * cartItem.quantity,
+      0
+    );
+
+    dispatch({
+      type: "SET_CART_ITEMS",
+      payload: {
+        cartItems: newCartItems,
+        cartPrice: newCartPrice,
+        cartCount: newCartCount,
+      },
+    });
+  };
 
   const addItemToCart = (productToAdd) => {
-    setCartItems(addCartItem(cartItems, productToAdd));
+    const newCartItems = addCartItem(cartItems, productToAdd);
+    updateCartItemsReducer(newCartItems);
   };
 
   const removeItemToCart = (productToDecrease, forceDelete = false) => {
-    setCartItems(removeCartItem(cartItems, productToDecrease, forceDelete));
+    const newCartItems = removeCartItem(
+      cartItems,
+      productToDecrease,
+      forceDelete
+    );
+    updateCartItemsReducer(newCartItems);
   };
 
   // here we expose what we want to consume
   const value = {
     isCartOpen,
-    setIsCartOpen,
+    setIsCartOpen: () => {},
     addItemToCart,
     cartItems,
     cartCount,
