@@ -85,9 +85,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 # SASS
 
+npm install -g sass
+
 # Style-Components
 
-`yarn add style-components`
+`npm install style-components`
 
 ### Netlify deploy
 
